@@ -1,27 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-bool chieudaicanhhuyen(int a,int b){
-    if(a<=0 || b <= 0){
-        printf("chieu dai cua  hai canh khong duoc bang khong");
-        return false;
+#include <string.h>
+ typedef struct sinhvien{
+    char ten[50];
+    char email[50];
+    char sodienthoai[20];
+    int tuoi[10];
+} ;
+void removestdchar(char array[]){
+    if(strchr(array, '\n')==NULL){
+        while (fgetc(stdin) != '\n');
     }
-    return true;
-}
-float tinhcanhhuyen(int a,int b){
-    return (float)sqrt(pow(a,2) +pow(b,2));
 }
 int main(){
-    int a;
-    int b;
-    printf("vui long nhap canh thu nhat\n");
-    scanf("%d",&a);
-    printf("vui long nhap canh thu hai\n");
-    scanf("%d",&b);
-    bool kt=chieudaicanhhuyen(a,b);
-    if(kt==true){
-        printf("canh huyen cua tam giac %.2f",tinhcanhhuyen(a,b));
+     struct sinhvien sinhviens[2] ;
+    for (int i = 0; i <2 ; ++i) {
+        printf("vui long nhap ten sinh vien thu %d:", i + 1);
+        fgets(sinhviens[i].ten,sizeof(sinhviens[i].ten)*sizeof(char) ,stdin);
+        removestdchar(sinhviens[i].ten);
+        printf("vui long nhap email sinh vien thu %d:", i + 1);
+        fgets(sinhviens[i].email,sizeof(sinhviens[i].email)*sizeof(char) ,stdin);
+        removestdchar(sinhviens[i].email);
+        printf("vui long nhap so dien thoai sinh vien thu %d:", i + 1);
+        fgets(sinhviens[i].sodienthoai,sizeof(sinhviens[i].sodienthoai)*sizeof(char) ,stdin);
+        removestdchar(sinhviens[i].sodienthoai);
+        printf("vui long nhap tuoi sinh vien thu %d:", i + 1);
+        scanf("%d",&sinhviens[i].tuoi);
+        getchar();
+
+    }
+    for (int j = 0; j < 2; ++j) {
+
+        printf("ten vua nhap la:%s\n",sinhviens[j].ten);
+        printf("email vua nhap la:%s\n",sinhviens[j].email);
+        printf("so dien thoai vua nhap la:%s\n",sinhviens[j].sodienthoai);
+        printf("tuoi vua nhap la:%d\n",sinhviens[j].tuoi);
     }
     return 0;
 }
